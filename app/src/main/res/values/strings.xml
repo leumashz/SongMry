@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SongMry</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="fragment1">Hola mundo</string>
+    <string name="fragment2">Adios mundo</string>
+    <string name="fragment3">Adios mundo</string>
+</resources>
