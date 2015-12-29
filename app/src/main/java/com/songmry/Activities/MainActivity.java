@@ -17,7 +17,7 @@ import android.view.View;
 
 import com.songmry.Fragments.Fragment1;
 import com.songmry.Fragments.Fragment2;
-import com.songmry.Fragments.FragmentAgregarSong;
+import com.songmry.Fragments.FragmentAddSong;
 import com.songmry.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         Fragment fragment = null;
-        Class fragmentClass = null;
-        fragmentClass = Fragment1.class;
+        Class fragmentClass = Fragment1.class;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_slideshow:
-                                fragment = new FragmentAgregarSong();
+                                fragment = new FragmentAddSong();
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_manage:
@@ -106,7 +105,11 @@ public class MainActivity extends AppCompatActivity {
                                     .commit();
 
                             menuItem.setChecked(true);
-                            getSupportActionBar().setTitle(menuItem.getTitle());
+                            try {
+                                getSupportActionBar().setTitle(menuItem.getTitle());
+                            }catch (Exception e){
+                                System.err.println("Error en obtener el titulo");
+                            }
                         }
 
                         drawer.closeDrawers();
@@ -128,48 +131,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*@SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }*/
 }
