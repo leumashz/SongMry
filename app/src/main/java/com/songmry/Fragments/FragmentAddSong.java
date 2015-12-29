@@ -26,35 +26,41 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class FragmentAgregarSong extends Fragment implements View.OnClickListener{
+public class FragmentAddSong extends Fragment{
 
     private static final String PROPERTIES_FILENAME = "youtube.properties";
     private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
     private static YouTube youtube;
     public static final String KEY = "AIzaSyB4mQxpi_Wio5uLDJV7_mJ7aXNyrBrThII";
     private View rootView;
-    private TextView txtBuscar;
-    private Button btnBuscar;
+    private TextView txtSearch;
+    private Button btnSearch;
 
 
-    public FragmentAgregarSong() {
+    public FragmentAddSong() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-        // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_agregar_song, container, false);
-        txtBuscar = (TextView) rootView.findViewById(R.id.txtBuscar);
-        btnBuscar = (Button) rootView.findViewById(R.id.btnBuscar);
+        txtSearch = (TextView) rootView.findViewById(R.id.txtBuscar);
+        btnSearch = (Button) rootView.findViewById(R.id.btnBuscar);
 
-        btnBuscar.setOnClickListener(this);
+        btnSearch.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        searchSongYoutube();
+                    }
+                }
+        );
 
         return rootView;
     }
 
-    public void buscarSongYoutube(){
+    public void searchSongYoutube(){
         try {
             // This object is used to make YouTube Data API requests. The last
             // argument is required, but since we don't need anything
@@ -69,7 +75,7 @@ public class FragmentAgregarSong extends Fragment implements View.OnClickListene
             //String queryTerm = getInputQuery();
 
 
-            String queryTerm = txtBuscar.getText().toString();
+            String queryTerm = txtSearch.getText().toString();
 
             // Define the API request for retrieving search results.
             YouTube.Search.List search = youtube.search().list("id,snippet");
@@ -84,7 +90,7 @@ public class FragmentAgregarSong extends Fragment implements View.OnClickListene
             // Restrict the search results to only include videos. See:
             // https://developers.google.com/youtube/v3/docs/search/list#type
             search.setType("video");
-
+            search.setVideoCategoryId("music");
             // To increase efficiency, only retrieve the fields that the
             // application uses.
             search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
@@ -108,36 +114,6 @@ public class FragmentAgregarSong extends Fragment implements View.OnClickListene
         } catch (Throwable t) {
             t.printStackTrace();
         }
-    }
-
-  /*  @Override
-    public void onStart() {
-        super.onStart();
-
-        try {
-            InputStream in = FragmentAgregarSong.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
-            properties.load(in);
-
-        } catch (IOException e) {
-            System.err.println("There was an error reading " + PROPERTIES_FILENAME + ": " + e.getCause()
-                    + " : " + e.getMessage());
-            System.exit(1);
-        }
-    }*/
-
-    private String getInputQuery() throws IOException {
-
-        String inputQuery = "hola";
-
-        System.out.print("Please enter a search term: ");
-        //BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
-        //inputQuery = bReader.readLine();
-
-        if (inputQuery.length() < 1) {
-            inputQuery = "musica";
-        }
-
-        return inputQuery;
     }
 
     private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query) {
@@ -165,12 +141,8 @@ public class FragmentAgregarSong extends Fragment implements View.OnClickListene
                 System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
                 System.out.println(" Thumbnail: " + thumbnail.getUrl());
                 System.out.println("\n-------------------------------------------------------------\n");
+
             }
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        buscarSongYoutube();
     }
 }
