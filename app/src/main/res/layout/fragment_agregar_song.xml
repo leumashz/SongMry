@@ -5,26 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.songmry.Fragments.FragmentAgregarSong">
 
-    <!-- caja de busqueda -->
+    tools:context=".Fragments.FragmentAddSong">
+
+    <!-- search -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/colorGray"
+        android:layout_margin="16dp"
         android:orientation="horizontal">
-        <EditText
-            android:layout_margin="10dp"
+        <!-- <EditText
+            android:layout_margin="16dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="64dp"
             android:hint="Canción, artista, grupo, genero "
-            android:id="@+id/txtBuscar"
+            android:id="@+id/txtSearch"
             />
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
             android:text="Buscar"
-            android:id="@+id/btnBuscar"/>
-    </LinearLayout>
-    <!-- termina caja de busqueda -->
+            android:id="@+id/btnSearch"/>-->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorGray"
+            android:src="@drawable/ic_search_black"
+            android:id="@+id/btnSearch" />
+        <EditText
 
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:hint="Canción o artista"
+            android:id="@+id/txtSearch"
+            android:background="@color/colorGray"
+            />
+
+
+    </LinearLayout>
+    <!-- search -->
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingLeft="16dp"
+        android:text=""/>
+    <!-- results -->
+    <ListView
+       android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/youtubeVideoResultList"
+        android:orientation="vertical"
+        />
+    <!-- result -->
 </LinearLayout>

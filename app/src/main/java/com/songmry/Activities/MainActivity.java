@@ -1,9 +1,7 @@
 package com.songmry.Activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.songmry.Fragments.Fragment1;
 import com.songmry.Fragments.Fragment2;
@@ -45,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                 fragment = new Fragment1();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.nav_gallery:
+                            case R.id.list_memories:
                                 fragment = new Fragment2();
                                 fragmentTransaction = true;
                                 break;
@@ -85,15 +82,15 @@ public class MainActivity extends AppCompatActivity {
                                 fragment = new FragmentAddSong();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.nav_manage:
+                            case R.id.record_user:
                                 fragment = new Fragment2();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.nav_share:
+                            case R.id.perfil_songmry:
                                 fragment = new Fragment1();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.nav_send:
+                            case R.id.app_exit:
                                 fragment = new Fragment2();
                                 fragmentTransaction = true;
                                 break;

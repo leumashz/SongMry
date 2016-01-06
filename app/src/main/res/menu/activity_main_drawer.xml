@@ -4,32 +4,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Inicio" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/list_memories"
+            android:icon="@drawable/ic_apps_black_24dp"
+            android:title="Ver Recuerdos" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:icon="@drawable/ic_library_add_black_24dp"
+            android:title="Agregar Recuerdo" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/record_user"
+            android:icon="@drawable/ic_school_black_24dp"
+            android:title="Logros" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/perfil_songmry"
+                android:icon="@drawable/ic_face_black_24dp"
+                android:title="Perfil" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/app_exit"
+                android:icon="@drawable/ic_close_black_24dp"
+                android:title="Salir" />
         </menu>
     </item>
 
