@@ -1,13 +1,12 @@
 package com.songmry.Fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
-
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -78,7 +76,7 @@ public class FragmentAddSong extends Fragment {
 
 
     public void searchSongYoutube() {
-        final Animation animAlpha = AnimationUtils.loadAnimation(this.getContext(), R.anim.alpha_animation);
+        //final Animation animAlpha = AnimationUtils.loadAnimation(this.getContext(), R.anim.alpha_animation);
         try {
 
             youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
@@ -116,7 +114,7 @@ public class FragmentAddSong extends Fragment {
                 TextView txtResult = (TextView)rootView.findViewById(R.id.txtResult);
                 txtResult.setText("Resultados");
 
-                this.getView().setAnimation(animAlpha);
+                //this.getView().setAnimation(animAlpha);
                 displayVideoResults(searchResultList.iterator());
             }
         } catch (GoogleJsonResponseException e) {
@@ -148,8 +146,7 @@ public class FragmentAddSong extends Fragment {
                 System.out.println("titulo del video: " + video.title);
                 System.out.println("id del video " + video.videoId);
                 //Toast.makeText(rootView.getContext(),video.title,Toast.LENGTH_LONG);
-                startActivity(YouTubeStandalonePlayer.createVideoIntent(getActivity(),
-                        KEY, video.videoId, 0, true, true));
+                showVideoAlert(rootView,video);
             }
         });
     }
@@ -171,6 +168,28 @@ public class FragmentAddSong extends Fragment {
         return videos;
     }
 
+    public void showVideoAlert(View view, final YoutubeVideo video){
+        android.support.v7.app.AlertDialog.Builder videoAlert = new android.support.v7.app.AlertDialog.Builder(this.getContext());
+        videoAlert
+                .setTitle(video.getTitle())
+                .setIcon(R.drawable.ic_subscriptions_black_36dp)
+                .setNegativeButton("Ver video", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(YouTubeStandalonePlayer.createVideoIntent(getActivity(),
+                                KEY, video.videoId, 0, true, true));
+                    }
+                })
+                .setPositiveButton("Agregar a recuerdo", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create()
+                .show();
+
+    }
 }
 
 /*private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query) {
